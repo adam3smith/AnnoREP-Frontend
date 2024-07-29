@@ -46,8 +46,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               published_states: PUBLICATION_STATUSES,
               mydata_search_term: `"${datasetDoi}"`,
             },
-            paramsSerializer: (params) => {
-              return qs.stringify(params, { indices: false })
+            paramsSerializer: {
+              serialize: (params) => {
+                return qs.stringify(params, { indices: false })
+              },
             },
             headers: {
               [REQUEST_DESC_HEADER_NAME]: `Searching for data project ${datasetDoi}`,

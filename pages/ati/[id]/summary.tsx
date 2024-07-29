@@ -94,8 +94,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             published_states: PUBLICATION_STATUSES,
             mydata_search_term: `"${dsPersistentId}"`,
           },
-          paramsSerializer: (params) => {
-            return qs.stringify(params, { indices: false })
+          paramsSerializer: {
+            serialize: (params) => {
+              return qs.stringify(params, { indices: false })
+            },
           },
           headers: {
             [REQUEST_DESC_HEADER_NAME]: `Searching for data project ${dsPersistentId}`,

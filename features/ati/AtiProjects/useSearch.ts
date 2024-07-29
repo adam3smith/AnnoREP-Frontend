@@ -33,8 +33,10 @@ const useSearch = (inititalState: ISearchState): [ISearchState, Dispatch<ISearch
             selectedPage: state.fetchPage ? state.page + 1 : 1,
             isAnnoRep: true,
           },
-          paramsSerializer: (params) => {
-            return qs.stringify(params, { indices: false })
+          paramsSerializer: {
+            serialize: (params) => {
+              return qs.stringify(params, { indices: false })
+            },
           },
         })
         if (!didCancel) {

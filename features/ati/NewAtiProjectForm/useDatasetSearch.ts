@@ -34,8 +34,10 @@ const useSearchDataset = (
             isAnnoRep: false,
             publicationStatuses: PUBLICATION_STATUSES,
           },
-          paramsSerializer: (params) => {
-            return qs.stringify(params, { indices: false })
+          paramsSerializer: {
+            serialize: (params) => {
+              return qs.stringify(params, { indices: false })
+            },
           },
         })
         if (!didCancel) {

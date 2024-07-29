@@ -40,8 +40,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               selected_page: selectedPage || 1,
               role_ids: ROLE_IDS,
             },
-            paramsSerializer: (params) => {
-              return qs.stringify(params, { indices: false })
+            paramsSerializer: {
+              serialize: (params) => {
+                return qs.stringify(params, { indices: false })
+              },
             },
             headers: {
               [REQUEST_DESC_HEADER_NAME]: `Searching for ${
