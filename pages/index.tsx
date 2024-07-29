@@ -105,8 +105,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             mydata_search_term: `${KIND_OF_DATA_NAME}:${ANNOREP_METADATA_VALUE}`,
             role_ids: ROLE_IDS,
           },
-          paramsSerializer: (params) => {
-            return qs.stringify(params, { indices: false })
+          paramsSerializer: {
+            serialize: (params) => {
+              return qs.stringify(params, { indices: false })
+            },
           },
           headers: {
             [REQUEST_DESC_HEADER_NAME]: `Searching for ${ANNOREP_METADATA_VALUE} data projects`,
